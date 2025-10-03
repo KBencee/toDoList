@@ -19,33 +19,35 @@ const ToDoList = () => {
         }))
     }
 
-    const bekuldToDo = () => {
+    const bekuldToDo = (e: React.FormEvent) => {
+        e.preventDefault()
+        if (!input.trim()) return
         const newTodo: item = {
             id: Date.now(),
             text: input,
             completed: false
-    }
-    setTodos([...todos, newTodo])
-    setInput("")
+        }
+        setTodos([...todos, newTodo])
+        setInput("")
     }
 
-  return (
-    <>
-    <div>
-        <form className="bevitel">
-        <input type="button" className="check" onClick={bekuldToDo}></input>
-        <input type="tex" placeholder={"Create a new todo..."} onChange={(e) => setInput(e.currentTarget.value)}/>
-        </form>
-    </div>
-    <div>
-        <ul>
-            {todos.map((todo) => (
-                <li key={todo.id} className="todok"><input type="checkbox" onClick={() => completeToDo(todo.id)}/>{todo.text}</li>
-            ))}
-        </ul>
-    </div>
-    </>
-  )
+    return (
+        <>
+            <div>
+                <form className="bevitel" onSubmit={bekuldToDo}>
+                    <input type="button" className="check" />
+                    <input type="text" placeholder="Create a new todo..." value={input} onChange={(e) => setInput(e.currentTarget.value)}/>
+                </form>
+            </div>
+            <div>
+                <ul>
+                    {todos.map((todo) => (
+                        <li key={todo.id} className="todok"><input type="checkbox" checked={todo.completed} onChange={() => completeToDo(todo.id)}/>{todo.text}</li>
+                    ))}
+                </ul>
+            </div>
+        </>
+    )
 }
 
 export default ToDoList
