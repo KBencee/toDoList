@@ -16,14 +16,7 @@ body{
   background-image: url(../kepek/bg-desktop-dark.jpg);
   background-repeat: no-repeat;
   background-size:100vw;
-
-  button{
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: transparent;
-    border: 1px solid gray;
-  }
+  overflow: hidden;
 }
 
 h1{
@@ -58,10 +51,20 @@ h1{
   }
 
   .check{
-    width: 20px;
-    height: 20px;
+    width:25px;
+    height: 22px;
     border-radius: 50%;
-    background-color: transparent;
+    vertical-align: middle;
     border: 1px solid gray;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+  }
+
+  .check:checked{
+    appearance: auto;
+    clip-path: circle(50% at 50% 50%);
+    background-color: blue;
   }
 }
